@@ -34,3 +34,4 @@ yarn react-dev
     -   `index.tsx` is the main page of the application
 -   `/components` includes components that are rendered in `index.tsx`
 -   `/public` includes static files
+# piggyBank
