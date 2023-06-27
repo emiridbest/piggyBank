@@ -2,11 +2,7 @@ import * as React from 'react'
 import { type PublicClient, usePublicClient, type WalletClient, useWalletClient } from 'wagmi'
 import { providers } from 'ethers'
 import { type HttpTransport } from 'viem'
-declare global {
-    interface Window {
-      transport: any;
-    }
-  }
+
 function publicClientToProvider(publicClient: PublicClient) {
     const { chain, transport } = publicClient
     const network = {
@@ -30,13 +26,14 @@ export function useEthersProvider({ chainId }: { chainId?: number } = {}) {
 }
 
 function walletClientToSigner(walletClient: WalletClient) {
-    const { account, chain, transport } = walletClient
+    const { account, chain } = walletClient;
     const network = {
         chainId: chain.id,
         name: chain.name,
         ensAddress: chain.contracts?.ensRegistry?.address,
-    }
-    const provider = new providers.Web3Provider(transport, network)
+    };
+    const rpcUrl = chain.rpcUrls.default.http[0];
+    const provider = new providers.JsonRpcProvider(rpcUrl, network);
     const signer = provider.getSigner(account.address)
     return signer
 }
