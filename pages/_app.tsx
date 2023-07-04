@@ -8,7 +8,7 @@ import Layout from "../components/Layout";
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
-const walletConnectProjectId = "6ab6f6619ba318beed3f073931527790" // get one at https://cloud.walletconnect.com/app
+const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string; // get one at https://cloud.walletconnect.com/app
 
 const { chains, publicClient } = configureChains(
   [Alfajores, Celo],
