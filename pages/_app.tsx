@@ -19,7 +19,7 @@ const { chains, publicClient } = configureChains(
 const connectors = celoGroups({
   chains,
   appName: (typeof document === "object" && document.title) || "Piggy Bank Dapp",
-  projectId: walletConnectProjectId,
+  projectId: projectId,
 });
 const wagmiConfig = createConfig({
   autoConnect: true,
